@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "babel:watch": "npx babel --watch index.js --out-dir lib",
-    "node:watch": "nodemon lib/index.js",
-    "dev": "npx concurrently --kill-others \"npm run babel:watch\" \"npm run node:watch\""
+    "dev": "DEBUG=mobileFight:* nodemon index.js",
+    "migrate": "npx sequelize-cli db:migrate",
+    "rollback": "npx sequelize-cli db:migrate:undo",
+    "seed": "npx sequelize-cli seed:generate",
+    "seed:run": "npx sequelize-cli db:seed:all",
+    "seed:down:all": "npx sequelize-cli db:seed:undo:all",
+    "seed:down:last": "npx sequelize-cli db:seed:undo"
   },
   "keywords": [],
   "author": "",
@@ -26,17 +30,13 @@
   },
   "devDependencies": {
     "@atomix/eslint-config": "^8.0.0",
-    "@babel/cli": "^7.8.3",
-    "@babel/core": "^7.8.3",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.7.4",
-    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
-    "@babel/preset-env": "^7.8.3",
     "concurrently": "^5.0.2",
     "eslint": "^5.16.0",
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-unicorn": "^7.1.0",
     "nodemon": "^2.0.2",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "sequelize-cli": "^5.5.1"
   }
 }

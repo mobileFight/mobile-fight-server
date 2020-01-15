@@ -1,7 +1,9 @@
-import Koa from "koa"
-import route from "koa-route"
-import websockify from "koa-websocket"
-import serve from "koa-static"
+const Koa = require("koa")
+const route = require("koa-route")
+const websockify = require("koa-websocket")
+const serve = require("koa-static")
+const debug = require("debug")("mobileFight:index")
+const { sequelize } = require("./src/models")
 
 const wsOptions = {
   verifyClient: (info, done) => {
@@ -27,4 +29,10 @@ app.ws.use((ctx, next) => {
   return next(ctx)
 })
 
-app.listen(3000)
+sequelize.authenticate().then(() => {
+  debug("db connected")
+
+  app.listen(3000, () => {
+    debug("server run!")
+  })
+})
