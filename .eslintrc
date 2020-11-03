@@ -1,6 +1,0 @@
-{
-  "extends": "@atomix/eslint-config",
-  "rules": {
-    "import/no-default-export": "off"
-  }
-}
