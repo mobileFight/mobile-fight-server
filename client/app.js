@@ -1,5 +1,5 @@
 function runConnection(id) {
-  const ws = new WebSocket(`ws://localhost:3000/${id}`)
+  const ws = new WebSocket(`ws://localhost:3000`)
 
   ws.onopen = function() {
     console.log("opened ws")
@@ -12,12 +12,6 @@ function runConnection(id) {
   ws.onmessage = function(message) {
     console.log({ message })
   }
-
-  function send() {
-    ws.send(`user id - ${id}`)
-  }
-
-  return send
 }
 
-document.cookie = document.cookie + ";token=some_token"
+runConnection()

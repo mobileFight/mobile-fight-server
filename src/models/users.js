@@ -1,4 +1,4 @@
-module.exports = function createUsersModel(sequelize, DataTypes) {
+export default function createUsersModel(sequelize, DataTypes) {
   const users = sequelize.define("users", {
     id: {
       allowNull: false,

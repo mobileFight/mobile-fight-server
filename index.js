@@ -1,10 +1,12 @@
 // @flow
 
-const Koa = require("koa")
-const websockify = require("koa-websocket")
-const debug = require("debug")("mobileFight:index")
-const { sequelize } = require("./src/models")
-const { wsRoutes, wsOptions } = require("./src/ws")
+import Koa from "koa"
+import websockify from "koa-websocket"
+import Debug from "debug"
+import { sequelize } from "./src/models"
+import { wsRoutes, wsOptions } from "./src/ws"
+
+const debug = Debug("mobileFight:index")
 
 const app = websockify(new Koa(), wsOptions)
 

@@ -1,4 +1,4 @@
-module.exports = function createSessionsModel(sequelize, DataTypes) {
+export default function createSessionsModel(sequelize, DataTypes) {
   const sessions = sequelize.define(
     "sessions",
     {

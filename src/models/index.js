@@ -1,12 +1,14 @@
-const fs = require("fs")
-const path = require("path")
-const Sequelize = require("sequelize")
-const { db: dbConfig } = require("../config")
+// @flow
+
+import fs from "fs"
+import path from "path"
+import SequelizeBase from "sequelize"
+import { db as dbConfig } from "../config"
 
 const basename = path.basename(__filename)
 const models = {}
 
-const sequelize = new Sequelize(
+export const sequelize = new SequelizeBase(
   dbConfig.database,
   dbConfig.username,
   dbConfig.password,
@@ -36,7 +38,6 @@ Object.keys(models).forEach((modelName) => {
   models[modelName].Models = models
 })
 
-models.sequelize = sequelize
-models.Sequelize = Sequelize
+export default models
 
-module.exports = models
+export const Sequelize = SequelizeBase

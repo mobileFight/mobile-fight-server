@@ -9,5 +9,6 @@
 [options]
 esproposal.optional_chaining=enable
 esproposal.nullish_coalescing=enable
+module.file_ext=.mjs
 
 [strict]
