@@ -18,5 +18,9 @@ export default function createSessionsModel(sequelize, DataTypes) {
     sessions.hasOne(models.Users)
   }
 
+  sessions.getTokens = function() {
+    return sessions.findAll()
+  }
+
   return sessions
 }

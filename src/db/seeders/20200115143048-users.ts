@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
       Add altering commands here.
@@ -38,6 +38,6 @@ export default {
       return queryInterface.bulkDelete('People', null, {});
     */
 
-    return queryInterface.bulkDelete("area", null, {})
+    return queryInterface.bulkDelete("users", null, {})
   },
 }

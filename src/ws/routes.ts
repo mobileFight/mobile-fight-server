@@ -1,10 +1,8 @@
-// @flow
-
 import cookie from "cookie"
 import Router from "koa-router"
 import { registerFightHandler } from "../features"
 import { wsParser } from "./parser"
-import { type WsType } from "../types"
+import { WsType } from "../types"
 
 export const wsOptions = {
   verifyClient: (info, done) => {
@@ -21,7 +19,10 @@ export const wsOptions = {
 
 const router = new Router()
 
-function runCommand({ type }: { type: WsType, payload: mixed }, ws: WebSocket) {
+function runCommand(
+  { type }: { type: WsType; payload: unknown },
+  ws: WebSocket,
+) {
   if (type === "fight") {
     registerFightHandler(payload, ws)
   }

@@ -10,5 +10,15 @@ export default function createUsersModel(sequelize, DataTypes) {
     login: DataTypes.STRING,
   })
 
+  users.getByToken = async function(userId: number) {
+    const user = await users.findOne({
+      where: {
+        id: userId,
+      },
+    })
+
+    return user
+  }
+
   return users
 }
