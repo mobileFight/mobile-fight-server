@@ -1,4 +1,6 @@
-import dbConfig from "./database.json"
+import path from "path"
+
+const dbConfig = require(path.resolve("database.json"))
 
 const { NODE_ENV = "development" } = process.env
 

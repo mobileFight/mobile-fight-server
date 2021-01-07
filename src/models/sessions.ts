@@ -1,5 +1,19 @@
-export default function createSessionsModel(sequelize, DataTypes) {
-  const sessions = sequelize.define(
+import { Sequelize, DataTypes, Model } from "sequelize"
+import { MobileFightModel } from "./types"
+
+export interface SessionModel extends Model {
+  id: number
+  token: string
+  user_id: number
+}
+
+export type SessionModelStatic = typeof Model &
+  MobileFightModel<SessionModel> & {
+    getTokens: () => Promise<Array<SessionModel>>
+  }
+
+export default function createSessionsModel(sequelize: Sequelize) {
+  const sessions = <SessionModelStatic>sequelize.define(
     "sessions",
     {
       id: {
@@ -11,11 +25,12 @@ export default function createSessionsModel(sequelize, DataTypes) {
       token: DataTypes.STRING,
       user_id: DataTypes.INTEGER,
     },
-    {},
+    { timestamps: true },
   )
 
   sessions.associate = (models) => {
-    sessions.hasOne(models.Users)
+    // @ts-ignore
+    sessions.hasOne(models.users)
   }
 
   sessions.getTokens = function() {

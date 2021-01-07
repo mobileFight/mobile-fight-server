@@ -20,7 +20,7 @@ export const wsOptions = {
 const router = new Router()
 
 function runCommand(
-  { type }: { type: WsType; payload: unknown },
+  { type, payload }: { type: WsType; payload: unknown },
   ws: WebSocket,
 ) {
   if (type === "fight") {

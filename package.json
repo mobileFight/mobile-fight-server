@@ -11,7 +11,8 @@
     "seed": "npx sequelize-cli seed:generate",
     "seed:run": "npx sequelize-cli db:seed:all",
     "seed:down:all": "npx sequelize-cli db:seed:undo:all",
-    "seed:down:last": "npx sequelize-cli db:seed:undo"
+    "seed:down:last": "npx sequelize-cli db:seed:undo",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
