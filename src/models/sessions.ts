@@ -9,7 +9,7 @@ export interface SessionModel extends Model {
 
 export type SessionModelStatic = typeof Model &
   MobileFightModel<SessionModel> & {
-    getTokens: () => Promise<Array<SessionModel>>
+    getSessionByToken: (token: string) => Promise<SessionModel | null>
   }
 
 export default function createSessionsModel(sequelize: Sequelize) {
@@ -33,8 +33,12 @@ export default function createSessionsModel(sequelize: Sequelize) {
     sessions.hasOne(models.users)
   }
 
-  sessions.getTokens = function() {
-    return sessions.findAll()
+  sessions.getSessionByToken = function(token) {
+    return sessions.findOne({
+      where: {
+        token,
+      },
+    })
   }
 
   return sessions

@@ -1,7 +1,7 @@
 import { WsType } from "../types"
 
 export function wsParser(
-  message: WsType,
+  message: string,
 ): { type: WsType; payload: unknown } | void {
   const result = JSON.parse(message)
 
