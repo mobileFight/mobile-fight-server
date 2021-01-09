@@ -1,14 +1,10 @@
-import { WsType } from "../types"
+import { WsRequest } from "./types"
 
-export function wsParser(
-  message: string,
-): { type: WsType; payload: unknown } | void {
-  const result = JSON.parse(message)
+export function wsParser(message: string): WsRequest | void {
+  const result: WsRequest | void = JSON.parse(message)
 
   if (result) {
-    const { type, payload } = result
-
-    return { type, payload }
+    return result
   }
 
   return undefined

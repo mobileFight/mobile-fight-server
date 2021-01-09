@@ -33,7 +33,7 @@ export default function createSessionsModel(sequelize: Sequelize) {
     sessions.hasOne(models.users)
   }
 
-  sessions.getSessionByToken = function(token) {
+  sessions.getSessionByToken = (token) => {
     return sessions.findOne({
       where: {
         token,

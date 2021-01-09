@@ -4,10 +4,12 @@ import { Sequelize as SequelizeBase } from "sequelize"
 import { db as dbConfig } from "../config"
 import { SessionModelStatic } from "./sessions"
 import { UsersModelStatic } from "./users"
+import { LocationModelStatic } from "./locations"
 
 type MainModels = {
   sessions: SessionModelStatic
   users: UsersModelStatic
+  locations: LocationModelStatic
 }
 
 const basename = path.basename(__filename)
