@@ -5,6 +5,6 @@ export enum LocationPaths {
 }
 
 export type GetLocationParams = {
-  type: LocationPaths.getLocation
-  payload: { locationId: number } & RequiredPayload
-}
+  method: LocationPaths.getLocation
+  payload: { locationId: number }
+} & RequiredPayload

@@ -13,10 +13,41 @@ export type Client =
 
 export const clients = new Map<string, Client>()
 
-export function buildRespoonse<T>(req: WsRequest, data: T): string {
+export function buildResponse<T>(
+  payload:
+    | {
+        req: WsRequest
+        data: T
+        isSuccess: true
+      }
+    | {
+        req: WsRequest
+        error: Error
+        isSuccess: false
+      },
+): string {
+  if (payload.isSuccess) {
+    const { req, data } = payload
+
+    return JSON.stringify({
+      ...req,
+      isSuccess: true,
+      type: "result",
+      payload: data,
+    })
+  }
+
+  const {
+    req,
+    // @ts-ignore
+    error,
+  } = payload
+
   return JSON.stringify({
     ...req,
-    payload: { data, reqId: req.payload.reqId },
+    isSuccess: false,
+    type: "result",
+    payload: error,
   })
 }
 
