@@ -31,6 +31,8 @@ export default function createLocationsModel(sequelize: Sequelize) {
     { timestamps: true },
   )
 
+  // Очень плохой запрос
+  // TODO: изучить рекурсивные алгоритмы хранения данных в бд
   locations.getLocationById = async (locationId) => {
     const location = await locations.findOne({
       where: {
